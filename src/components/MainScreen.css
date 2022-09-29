@@ -1,0 +1,38 @@
+.main-screen-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+.start-button {
+  border-radius: 20px;
+  width: 200px;
+  height: 75px;
+  font-size: larger;
+  font-weight: bolder;
+  cursor: pointer;
+  margin-top: 100px;
+  background-color: rgb(60, 174, 250);
+  color: white;
+  letter-spacing: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.start-button:hover {
+  background-color: rgb(120, 195, 245);
+  transform: scale(1.2);
+}

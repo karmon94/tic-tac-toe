@@ -1,19 +1,17 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import MainScreen from "./components/MainScreen";
+import PlayerForm from "./components/PlayerForm";
 import Tablero from "./components/Tablero";
 
 function App() {
-  return (
-    <div className="app-container">
-      <div className="tablero">
-        <Tablero />
-      </div>
+  const router = createBrowserRouter([
+    { path: "/", element: <MainScreen /> },
+    { path: "players", element: <PlayerForm /> },
+    { path: "game", element: <Tablero /> },
+  ]);
 
-      <div className="info-juego">
-        <div>{/* estado */}</div>
-        <div>{/* TODO */}</div>
-      </div>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
