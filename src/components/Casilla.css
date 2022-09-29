@@ -1,0 +1,26 @@
+.casilla {
+  background-color: white;
+  border: 1px solid grey;
+  font-size: 50px;
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.casilla:hover {
+  background-color: rgb(231, 248, 253);
+  cursor: pointer;
+}
+
+.casilla:hover:disabled {
+  background-color: white;
+  cursor: default;
+}
+
+.casilla:disabled {
+  color: black;
+}
