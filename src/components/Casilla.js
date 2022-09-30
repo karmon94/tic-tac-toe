@@ -1,6 +1,6 @@
 import "./Casilla.css";
 
-const Casilla = ({ indice, onClickCasilla, valor }) => {
+const Casilla = ({ indice, onClickCasilla, valor, ganador }) => {
   const clickHandler = (indice) => {
     if (!valor) {
       onClickCasilla(indice);
@@ -11,7 +11,7 @@ const Casilla = ({ indice, onClickCasilla, valor }) => {
     <button
       className="casilla"
       onClick={() => clickHandler(indice)}
-      disabled={valor}
+      disabled={valor || ganador}
     >
       {valor}
     </button>
