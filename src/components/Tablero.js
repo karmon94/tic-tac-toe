@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Casilla from "./Casilla";
 import { verificarGanador } from "./CheckWinner";
 
 import { Fab, Tooltip } from "@mui/material";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import "./Tablero.css";
+import Casilla from "./Casilla";
+import Leaderboard from "./Leaderboard";
 import WinnerDialog from "./WinnerDialog";
 import { updateLeaderboard } from "./UpdateLeaderboard";
+
+import "./Tablero.css";
 
 const Tablero = ({ figura }) => {
   const navigation = useNavigate();
@@ -18,6 +20,7 @@ const Tablero = ({ figura }) => {
   const [playerOne, setPlayerOne] = useState("");
   const [playerTwo, setPlayerTwo] = useState("");
   const [openWinnerDialog, setOpenWinnerDialog] = useState(false);
+  const [openLeaderboardDialog, setOpenLeaderboardDialog] = useState(false);
   const [ganador, setGanador] = useState(null);
 
   const turnoActual = "Turno de jugador: " + (turnoX ? playerOne : playerTwo);
@@ -55,10 +58,14 @@ const Tablero = ({ figura }) => {
 
   const backHandler = (e) => {
     e.preventDefault();
+    resetGame();
     navigation("/players", { replace: true });
   };
 
-  const leaderHandler = () => {};
+  const leaderHandler = (e) => {
+    e.preventDefault();
+    setOpenLeaderboardDialog(true);
+  };
 
   const playAgainHandler = () => {
     setOpenWinnerDialog(false);
@@ -75,6 +82,10 @@ const Tablero = ({ figura }) => {
   const resetGame = () => {
     setCasillas(Array(9).fill(null));
     setGanador(null);
+  };
+
+  const exitLeaderboardHandler = () => {
+    setOpenLeaderboardDialog(false);
   };
 
   return (
@@ -115,6 +126,12 @@ const Tablero = ({ figura }) => {
         onPlayAgain={playAgainHandler}
         onExit={exitHandler}
         ganador={ganador}
+      />
+
+      <Leaderboard
+        id="leaderdialog"
+        open={openLeaderboardDialog}
+        onExit={exitLeaderboardHandler}
       />
     </div>
   );

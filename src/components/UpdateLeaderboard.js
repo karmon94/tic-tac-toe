@@ -1,3 +1,6 @@
+import { nanoid } from "nanoid";
+import { compareWins } from "./CompareWins";
+
 export const updateLeaderboard = (username) => {
   let leaderboard = JSON.parse(localStorage.getItem("leaderboard"));
 
@@ -14,14 +17,15 @@ export const updateLeaderboard = (username) => {
     });
 
     if (!found) {
-      newLeaderboard.push({ username: username, wins: 1 });
+      newLeaderboard.push({ id: nanoid(), username: username, wins: 1 });
     }
 
+    newLeaderboard.sort(compareWins);
     localStorage.setItem("leaderboard", JSON.stringify(newLeaderboard));
   } else {
     localStorage.setItem(
       "leaderboard",
-      JSON.stringify([{ username: username, wins: 1 }])
+      JSON.stringify([{ id: nanoid(), username: username, wins: 1 }])
     );
   }
 };

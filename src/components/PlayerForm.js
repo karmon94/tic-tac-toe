@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Fab } from "@mui/material";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Leaderboard from "./Leaderboard";
 
 import "./PlayerForm.css";
 
@@ -13,6 +14,7 @@ const PlayerForm = () => {
     playerOne: "",
     playerTwo: "",
   });
+  const [openLeaderboardDialog, setOpenLeaderboardDialog] = useState(false);
 
   const onChangeHandler = (e) => {
     setPlayer({ ...player, [e.target.name]: e.target.value });
@@ -33,7 +35,14 @@ const PlayerForm = () => {
     }
   };
 
-  const leaderHandler = () => {};
+  const leaderHandler = (e) => {
+    e.preventDefault();
+    setOpenLeaderboardDialog(true);
+  };
+
+  const exitLeaderboardHandler = () => {
+    setOpenLeaderboardDialog(false);
+  };
 
   return (
     <div className="page-container">
@@ -80,6 +89,12 @@ const PlayerForm = () => {
           Play
         </button>
       </form>
+
+      <Leaderboard
+        id="leaderdialog"
+        open={openLeaderboardDialog}
+        onExit={exitLeaderboardHandler}
+      />
     </div>
   );
 };
